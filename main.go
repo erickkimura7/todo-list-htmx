@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"database/sql"
+	"log"
 	"todo-list/repository"
 
 	"github.com/gofiber/fiber/v2"
@@ -20,12 +21,13 @@ var ddl string
 func main() {
 	db, err := sql.Open("sqlite3", "database.db")
 	if err != nil {
-		panic(err)
+		log.Fatalln(err)
 	}
+	defer db.Close()
 
 	// create tables
 	if _, err := db.ExecContext(context.Background(), ddl); err != nil {
-		panic(err)
+		log.Fatalln(err)
 	}
 
 	repository := repository.New(db)
@@ -88,5 +90,5 @@ func main() {
 		}, "layouts/main")
 	})
 
-	panic(app.Listen(":8080"))
+	log.Fatalln(app.Listen(":8080"))
 }
