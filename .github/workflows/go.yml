@@ -12,4 +12,7 @@ jobs:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.SSH_KEY }}
-        script: whoami
+        script: |
+          cd /home/github/project/todo-list-htmx
+          git checkout main
+          git pull
