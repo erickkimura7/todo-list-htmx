@@ -1,0 +1,18 @@
+@host = 172.30.72.58
+@port = 8080
+
+###
+
+GET http://{{host}}:{{port}}/todos HTTP/1.1
+
+
+###
+
+POST http://{{host}}:{{port}}/todo HTTP/1.1
+Content-Type: application/json
+
+{
+  "title": "Test title 1",
+  "description": "Test Description",
+  "is_done": false
+}
