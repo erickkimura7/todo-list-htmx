@@ -1,11 +1,11 @@
-<li id="item-{{ .Id}}"
+<li id="item-{{ .ID}}"
   class="list-group-item d-flex justify-content-between align-items-center border-start-0 border-top-0 border-end-0 border-bottom rounded-0 mb-2">
   <div class="d-flex align-items-center">
     <input class="form-check-input me-2" type="checkbox" value="true" aria-label="..." {{ if .IsDone }} checked {{ end
-      }} hx-patch="/todo/{{ .Id}}" hx-target="#item-{{ .Id}}" hx-swap="outerHTML" required="required" />
+      }} hx-patch="/todo/{{ .ID}}" hx-target="#item-{{ .ID}}" hx-swap="outerHTML" required="required" />
     {{ .Title }}
   </div>
-  <a hx-delete="/todo/{{ .Id}}" hx-target="#item-{{ .Id}}" hx-swap="delete" data-mdb-toggle="tooltip"
+  <a hx-delete="/todo/{{ .ID}}" hx-target="#item-{{ .ID}}" hx-swap="delete" data-mdb-toggle="tooltip"
     title="Remove item">
     <i class="fas fa-times text-primary"></i>
   </a>
