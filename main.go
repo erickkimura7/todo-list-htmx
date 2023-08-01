@@ -88,5 +88,5 @@ func main() {
 		}, "layouts/main")
 	})
 
-	app.Listen(":8080")
+	panic(app.Listen(":8080"))
 }
