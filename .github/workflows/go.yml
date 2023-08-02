@@ -3,45 +3,26 @@ on:
   push:
     branches:
       - "main"
+      
 jobs:
-  build:
 
+  build:
+    name: Build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-
-      - name: Set up Go
-        uses: actions/setup-go@v4
-        with:
-          go-version: '1.20'
-
-      - name: Build
-        run: go build -v ./...
-
-      - name: Test
-        run: go test -v ./...
-# jobs:
-
-#   build:
-#     name: Build
-#     runs-on: ubuntu-latest
-#     steps:
-#     - name: executing remote ssh commands using password
-#       uses: appleboy/ssh-action@v0.1.7
-#       with:
-#         host: ${{ secrets.HOST }}
-#         username: ${{ secrets.USERNAME }}
-#         key: ${{ secrets.SSH_KEY }}
-#         script: |
-#           cd /home/github/project/todo-list-htmx
-#           git checkout main
-#           git pull
-          
-#     - name: Set up Go
-#       uses: actions/setup-go@v4
-#       with:
-#         go-version: '1.20.x'
-
-#     - name: Build
-#       run: go build -v ./...
+    - name: executing remote ssh commands using password
+      uses: appleboy/ssh-action@v0.1.7
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.SSH_KEY }}
+        script: |
+          cd /home/github/project/todo-list-htmx
+          git checkout main
+          git pull
+          go mod tidy
+          go build -v -o app
+          cp ./app ~/application/app
+          cd ~/application/
+          chmod -x app
       
