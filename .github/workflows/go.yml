@@ -21,7 +21,7 @@ jobs:
           git checkout main
           git pull
           go mod tidy
-          go build -v -o app
+          go build -v -o app main.go
           cp ./app ~/application/app
           cd ~/application/
           chmod -x app
